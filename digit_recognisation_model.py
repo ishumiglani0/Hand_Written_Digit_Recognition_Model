@@ -15,6 +15,8 @@ tf.autograph.set_verbosity(0)
 
 def get_mnist_data():
     # load dataset
+    # print(X_train)
+    # print(y_train)
     (X_train, y_train),(X_test,y_test) = mnist.load_data()
     return (X_train, y_train,X_test,y_test)
 
@@ -113,7 +115,7 @@ def main():
     model=None
     try:
         print('loading model')
-        model=tf.keras.models.load_model('ishu.sav')
+        model=tf.keras.models.load_model('ishu.h5')
         print('loaded saved model')
         print(model.summary())
     except:
@@ -123,7 +125,7 @@ def main():
         print("training model...")
         model = train_model(X_train, y_train,X_test,y_test)
         print("saving model...")
-        model.save('ishu.sav')
+        model.save('ishu.h5')
 
     print('starting cv...')
     start_cv(model)
